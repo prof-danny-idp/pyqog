@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference — pyqog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">pyqog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="installation.html">Installation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tutorial.html">Tutorial</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="api.html">API</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="datasets.html">Datasets</a>
+                    </li>
+                </ul>
+                <div class="lang-switcher">
+                    <a href="../pt/api.html" class="btn btn-lang" data-lang="pt">PT</a>
+                    <a href="api.html" class="btn btn-lang active" data-lang="en">EN</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">API Reference</li>
+                </ol>
+            </nav>
+            <h1>API Reference</h1>
+            <p class="mb-0 mt-2" style="opacity: 0.85;">Complete documentation for all pyqog functions.</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="content-section">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3">
+                    <nav class="sidebar">
+                        <nav class="nav flex-column">
+                            <a class="nav-link" href="#read_qog">read_qog()</a>
+                            <a class="nav-link" href="#list_datasets">list_datasets()</a>
+                            <a class="nav-link" href="#list_versions">list_versions()</a>
+                            <a class="nav-link" href="#get_codebook_url">get_codebook_url()</a>
+                            <a class="nav-link" href="#search_variables">search_variables()</a>
+                            <a class="nav-link" href="#describe_dataset">describe_dataset()</a>
+                        </nav>
+                    </nav>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-lg-9">
+
+                    <!-- read_qog -->
+                    <div id="read_qog" class="mb-5">
+                        <h2 class="section-title">read_qog()</h2>
+                        <p>
+                            The main function of <code>pyqog</code>. Downloads a QoG dataset and returns it as a
+                            pandas DataFrame. Uses local caching by default.
+                        </p>
+
+                        <h5 class="mt-4">Signature</h5>
+<pre><code>pyqog.read_qog(
+    which_data: str = <span class="st">"basic"</span>,
+    data_type: str = <span class="st">"time-series"</span>,
+    year: int = <span class="nb">2026</span>,
+    data_dir: str | None = <span class="nb">None</span>,
+    cache: bool = <span class="nb">True</span>,
+    update_cache: bool = <span class="nb">False</span>
+) -> pd.DataFrame</code></pre>
+
+                        <h5 class="mt-4">Parameters</h5>
+                        <table class="table table-striped param-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Default</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>which_data</td>
+                                    <td>str</td>
+                                    <td>"basic"</td>
+                                    <td>
+                                        Dataset to download. Options: <code>"basic"</code>, <code>"standard"</code>,
+                                        <code>"oecd"</code>, <code>"environmental"</code>, <code>"social_policy"</code>.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>data_type</td>
+                                    <td>str</td>
+                                    <td>"time-series"</td>
+                                    <td>
+                                        Data format. Options: <code>"time-series"</code> (panel data with country-year rows)
+                                        or <code>"cross-sectional"</code> (one row per country).
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>year</td>
+                                    <td>int</td>
+                                    <td>2026</td>
+                                    <td>
+                                        Publication year of the dataset version. <strong>Not</strong> the year of the data.
+                                        For example, <code>2026</code> downloads the Jan 2026 release. Older years are
+                                        fetched from the QoG data archive.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>data_dir</td>
+                                    <td>str | None</td>
+                                    <td>None</td>
+                                    <td>
+                                        Directory for caching files. If <code>None</code>, uses the default
+                                        <code>~/.pyqog/cache/</code>. Overrides the default cache location.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>cache</td>
+                                    <td>bool</td>
+                                    <td>True</td>
+                                    <td>
+                                        Whether to use local caching. If <code>True</code>, checks for a cached file
+                                        before downloading. If <code>False</code>, always downloads from the server
+                                        (but does not save locally).
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>update_cache</td>
+                                    <td>bool</td>
+                                    <td>False</td>
+                                    <td>
+                                        Force re-download even if a cached file exists. The new file replaces the old
+                                        cached version.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5 class="mt-4">Returns</h5>
+                        <p>
+                            <code>pd.DataFrame</code> &mdash; A pandas DataFrame containing the requested QoG dataset.
+                        </p>
+
+                        <h5 class="mt-4">Raises</h5>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Exception</th>
+                                    <th>Condition</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>ValueError</code></td>
+                                    <td>Invalid <code>which_data</code>, <code>data_type</code>, or <code>year</code> value.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>requests.ConnectionError</code></td>
+                                    <td>No internet connection and no cached file available.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>requests.HTTPError</code></td>
+                                    <td>Server returned an error (e.g., 404 for unavailable dataset).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5 class="mt-4">Examples</h5>
+<pre><code><span class="kw">import</span> pyqog
+
+<span class="cm"># Basic time-series (default)</span>
+df = pyqog.read_qog()
+
+<span class="cm"># Standard cross-sectional</span>
+df = pyqog.read_qog(which_data=<span class="st">"standard"</span>, data_type=<span class="st">"cross-sectional"</span>)
+
+<span class="cm"># OECD dataset from 2022</span>
+df = pyqog.read_qog(which_data=<span class="st">"oecd"</span>, year=<span class="nb">2022</span>)
+
+<span class="cm"># Force re-download</span>
+df = pyqog.read_qog(update_cache=<span class="nb">True</span>)
+
+<span class="cm"># Custom cache directory</span>
+df = pyqog.read_qog(data_dir=<span class="st">"/tmp/qog_data"</span>)</code></pre>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <!-- list_datasets -->
+                    <div id="list_datasets" class="mb-5">
+                        <h2 class="section-title">list_datasets()</h2>
+                        <p>
+                            Lists all available QoG datasets with their descriptions.
+                        </p>
+
+                        <h5 class="mt-4">Signature</h5>
+<pre><code>pyqog.list_datasets() -> pd.DataFrame</code></pre>
+
+                        <h5 class="mt-4">Parameters</h5>
+                        <p>None.</p>
+
+                        <h5 class="mt-4">Returns</h5>
+                        <p>
+                            <code>pd.DataFrame</code> &mdash; A DataFrame with columns for dataset name, prefix,
+                            and description.
+                        </p>
+
+                        <h5 class="mt-4">Example</h5>
+<pre><code><span class="kw">import</span> pyqog
+
+datasets = pyqog.list_datasets()
+<span class="fn">print</span>(datasets)
+
+<span class="cm">#         name prefix                          description</span>
+<span class="cm"># 0      basic    bas    Key governance indicators</span>
+<span class="cm"># 1   standard    std    Comprehensive dataset (~2000 vars)</span>
+<span class="cm"># 2       oecd   oecd    OECD member countries</span>
+<span class="cm"># 3  environmental  ei    Environmental indicators</span>
+<span class="cm"># 4  social_policy  soc   Social policy data</span></code></pre>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <!-- list_versions -->
+                    <div id="list_versions" class="mb-5">
+                        <h2 class="section-title">list_versions()</h2>
+                        <p>
+                            Lists available publication years for a given dataset.
+                        </p>
+
+                        <h5 class="mt-4">Signature</h5>
+<pre><code>pyqog.list_versions(
+    which_data: str = <span class="st">"basic"</span>
+) -> list[int]</code></pre>
+
+                        <h5 class="mt-4">Parameters</h5>
+                        <table class="table table-striped param-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Default</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>which_data</td>
+                                    <td>str</td>
+                                    <td>"basic"</td>
+                                    <td>
+                                        Dataset name. Options: <code>"basic"</code>, <code>"standard"</code>,
+                                        <code>"oecd"</code>, <code>"environmental"</code>, <code>"social_policy"</code>.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5 class="mt-4">Returns</h5>
+                        <p>
+                            <code>list[int]</code> &mdash; A list of available publication years, sorted in descending order.
+                        </p>
+
+                        <h5 class="mt-4">Example</h5>
+<pre><code><span class="kw">import</span> pyqog
+
+versions = pyqog.list_versions(<span class="st">"standard"</span>)
+<span class="fn">print</span>(versions)
+<span class="cm"># [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, ...]</span></code></pre>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <!-- get_codebook_url -->
+                    <div id="get_codebook_url" class="mb-5">
+                        <h2 class="section-title">get_codebook_url()</h2>
+                        <p>
+                            Returns the URL for a dataset's codebook PDF.
+                        </p>
+
+                        <h5 class="mt-4">Signature</h5>
+<pre><code>pyqog.get_codebook_url(
+    which_data: str = <span class="st">"basic"</span>,
+    year: int = <span class="nb">2026</span>
+) -> str</code></pre>
+
+                        <h5 class="mt-4">Parameters</h5>
+                        <table class="table table-striped param-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Default</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>which_data</td>
+                                    <td>str</td>
+                                    <td>"basic"</td>
+                                    <td>
+                                        Dataset name. Options: <code>"basic"</code>, <code>"standard"</code>,
+                                        <code>"oecd"</code>, <code>"environmental"</code>, <code>"social_policy"</code>.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>year</td>
+                                    <td>int</td>
+                                    <td>2026</td>
+                                    <td>Publication year of the dataset version.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5 class="mt-4">Returns</h5>
+                        <p>
+                            <code>str</code> &mdash; URL to the codebook PDF file.
+                        </p>
+
+                        <h5 class="mt-4">Example</h5>
+<pre><code><span class="kw">import</span> pyqog
+
+<span class="cm"># Current version codebook</span>
+url = pyqog.get_codebook_url(<span class="st">"standard"</span>, <span class="nb">2026</span>)
+<span class="fn">print</span>(url)
+<span class="cm"># https://www.qogdata.pol.gu.se/data/codebook_std_jan26.pdf</span>
+
+<span class="cm"># Archived version codebook</span>
+url = pyqog.get_codebook_url(<span class="st">"basic"</span>, <span class="nb">2020</span>)
+<span class="fn">print</span>(url)
+<span class="cm"># https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_jan20.pdf</span></code></pre>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <!-- search_variables -->
+                    <div id="search_variables" class="mb-5">
+                        <h2 class="section-title">search_variables()</h2>
+                        <p>
+                            Searches for column names in a DataFrame that match a given pattern.
+                            Useful for finding variables in large QoG datasets.
+                        </p>
+
+                        <h5 class="mt-4">Signature</h5>
+<pre><code>pyqog.search_variables(
+    df: pd.DataFrame,
+    pattern: str
+) -> list[str]</code></pre>
+
+                        <h5 class="mt-4">Parameters</h5>
+                        <table class="table table-striped param-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Default</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>df</td>
+                                    <td>pd.DataFrame</td>
+                                    <td>&mdash;</td>
+                                    <td>A pandas DataFrame (typically returned by <code>read_qog()</code>).</td>
+                                </tr>
+                                <tr>
+                                    <td>pattern</td>
+                                    <td>str</td>
+                                    <td>&mdash;</td>
+                                    <td>
+                                        Search pattern (case-insensitive). Matches any part of the column name.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5 class="mt-4">Returns</h5>
+                        <p>
+                            <code>list[str]</code> &mdash; A list of column names that match the pattern.
+                        </p>
+
+                        <h5 class="mt-4">Example</h5>
+<pre><code><span class="kw">import</span> pyqog
+
+df = pyqog.read_qog(which_data=<span class="st">"standard"</span>)
+
+<span class="cm"># Find corruption-related variables</span>
+corruption_vars = pyqog.search_variables(df, <span class="st">"corrupt"</span>)
+<span class="fn">print</span>(corruption_vars)
+
+<span class="cm"># Find GDP-related variables</span>
+gdp_vars = pyqog.search_variables(df, <span class="st">"gdp"</span>)
+<span class="fn">print</span>(gdp_vars)
+
+<span class="cm"># Find democracy-related variables</span>
+demo_vars = pyqog.search_variables(df, <span class="st">"demo"</span>)
+<span class="fn">print</span>(demo_vars)</code></pre>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <!-- describe_dataset -->
+                    <div id="describe_dataset" class="mb-5">
+                        <h2 class="section-title">describe_dataset()</h2>
+                        <p>
+                            Returns summary information about a QoG dataset, including number of variables,
+                            countries, years, and more.
+                        </p>
+
+                        <h5 class="mt-4">Signature</h5>
+<pre><code>pyqog.describe_dataset(
+    which_data: str = <span class="st">"basic"</span>,
+    year: int = <span class="nb">2026</span>
+) -> dict</code></pre>
+
+                        <h5 class="mt-4">Parameters</h5>
+                        <table class="table table-striped param-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Default</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>which_data</td>
+                                    <td>str</td>
+                                    <td>"basic"</td>
+                                    <td>
+                                        Dataset name. Options: <code>"basic"</code>, <code>"standard"</code>,
+                                        <code>"oecd"</code>, <code>"environmental"</code>, <code>"social_policy"</code>.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>year</td>
+                                    <td>int</td>
+                                    <td>2026</td>
+                                    <td>Publication year of the dataset version.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5 class="mt-4">Returns</h5>
+                        <p>
+                            <code>dict</code> &mdash; A dictionary with summary information:
+                        </p>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Key</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>"dataset"</code></td>
+                                    <td>str</td>
+                                    <td>Dataset name</td>
+                                </tr>
+                                <tr>
+                                    <td><code>"version"</code></td>
+                                    <td>int</td>
+                                    <td>Publication year</td>
+                                </tr>
+                                <tr>
+                                    <td><code>"n_rows"</code></td>
+                                    <td>int</td>
+                                    <td>Number of rows</td>
+                                </tr>
+                                <tr>
+                                    <td><code>"n_vars"</code></td>
+                                    <td>int</td>
+                                    <td>Number of variables (columns)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>"n_countries"</code></td>
+                                    <td>int</td>
+                                    <td>Number of unique countries</td>
+                                </tr>
+                                <tr>
+                                    <td><code>"n_years"</code></td>
+                                    <td>int | None</td>
+                                    <td>Number of unique years (time-series only)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>"codebook_url"</code></td>
+                                    <td>str</td>
+                                    <td>URL to the codebook PDF</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5 class="mt-4">Example</h5>
+<pre><code><span class="kw">import</span> pyqog
+
+info = pyqog.describe_dataset(<span class="st">"standard"</span>, <span class="nb">2026</span>)
+<span class="fn">print</span>(info)
+<span class="cm"># {</span>
+<span class="cm">#     "dataset": "standard",</span>
+<span class="cm">#     "version": 2026,</span>
+<span class="cm">#     "n_rows": 15000,</span>
+<span class="cm">#     "n_vars": 2100,</span>
+<span class="cm">#     "n_countries": 195,</span>
+<span class="cm">#     "n_years": 75,</span>
+<span class="cm">#     "codebook_url": "https://www.qogdata.pol.gu.se/data/codebook_std_jan26.pdf"</span>
+<span class="cm"># }</span></code></pre>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="notice-compact">
+                &#128218; <strong>pyqog</strong> &mdash; Teaching tool for Data Science courses by Professor Danny de Castro, IDP (Brazil).
+                For official data: <a href="https://www.gu.se/en/quality-government" target="_blank" rel="noopener">QoG Institute</a> |
+                Contact: <a href="mailto:danny.soares@idp.edu.br">danny.soares@idp.edu.br</a>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h6>pyqog</h6>
+                    <p>Python client for QoG Institute data. MIT License.</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="https://www.gu.se/en/quality-government" target="_blank" rel="noopener">QoG Institute</a></li>
+                        <li><a href="https://www.gu.se/en/quality-government/qog-data/data-downloads" target="_blank" rel="noopener">Data Downloads</a></li>
+                        <li><a href="https://datafinder.qog.gu.se/" target="_blank" rel="noopener">QoG Data Finder</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6>Documentation</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="installation.html">Installation</a></li>
+                        <li><a href="tutorial.html">Tutorial</a></li>
+                        <li><a href="api.html">API Reference</a></li>
+                        <li><a href="datasets.html">Datasets</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                &copy; 2026 pyqog. MIT License. Data provided by <a href="https://www.gu.se/en/quality-government">QoG Institute</a>, University of Gothenburg.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/lang-switcher.js"></script>
+</body>
+</html>

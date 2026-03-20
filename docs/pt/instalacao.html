@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalacao — pyqog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">pyqog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="instalacao.html">Instalacao</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tutorial.html">Tutorial</a></li>
+                    <li class="nav-item"><a class="nav-link" href="api.html">API</a></li>
+                    <li class="nav-item"><a class="nav-link" href="datasets.html">Datasets</a></li>
+                </ul>
+                <div class="lang-switcher">
+                    <a href="instalacao.html" class="btn btn-lang active" data-lang="pt">PT</a>
+                    <a href="../en/installation.html" class="btn btn-lang" data-lang="en">EN</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header" style="padding-top: 100px;">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Instalacao</li>
+                </ol>
+            </nav>
+            <h1>Instalacao</h1>
+            <p class="mb-0" style="opacity: 0.8;">Como instalar e configurar o pyqog no seu ambiente Python.</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="content-section">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3">
+                    <nav class="sidebar">
+                        <nav class="nav flex-column">
+                            <a class="nav-link" href="#pip">Instalacao via pip</a>
+                            <a class="nav-link" href="#requisitos">Requisitos</a>
+                            <a class="nav-link" href="#desenvolvimento">Instalacao de Desenvolvimento</a>
+                            <a class="nav-link" href="#verificacao">Verificacao</a>
+                            <a class="nav-link" href="#desinstalacao">Desinstalacao</a>
+                        </nav>
+                    </nav>
+                </div>
+
+                <!-- Main content -->
+                <div class="col-lg-9">
+
+                    <!-- pip install -->
+                    <div id="pip" class="mb-5">
+                        <h2 class="section-title">Instalacao via pip</h2>
+                        <p>A forma mais simples de instalar o <code>pyqog</code> e via pip, o gerenciador de pacotes do Python:</p>
+<pre><code>pip install pyqog</code></pre>
+                        <p class="mt-3">
+                            Isso instalara o pyqog e todas as suas dependencias automaticamente.
+                        </p>
+                        <div class="notice-card">
+                            <p class="mb-0">
+                                <strong>Dica:</strong> Recomendamos usar um ambiente virtual (venv ou conda) para isolar as dependencias do projeto.
+                            </p>
+                        </div>
+                        <h5 class="mt-4">Usando ambiente virtual (recomendado)</h5>
+<pre><code><span class="cm"># Criar ambiente virtual</span>
+python -m venv .venv
+
+<span class="cm"># Ativar (Linux/Mac)</span>
+source .venv/bin/activate
+
+<span class="cm"># Ativar (Windows)</span>
+.venv\Scripts\activate
+
+<span class="cm"># Instalar pyqog</span>
+pip install pyqog</code></pre>
+
+                        <h5 class="mt-4">Usando conda</h5>
+<pre><code><span class="cm"># Criar ambiente conda</span>
+conda create -n qog python=3.11
+conda activate qog
+
+<span class="cm"># Instalar pyqog</span>
+pip install pyqog</code></pre>
+                    </div>
+
+                    <!-- Requisitos -->
+                    <div id="requisitos" class="mb-5">
+                        <h2 class="section-title">Requisitos</h2>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Requisito</th>
+                                    <th>Versao Minima</th>
+                                    <th>Descricao</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Python</strong></td>
+                                    <td>3.9+</td>
+                                    <td>Linguagem de programacao</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>pandas</strong></td>
+                                    <td>1.5.0+</td>
+                                    <td>Manipulacao e analise de dados tabulares</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>requests</strong></td>
+                                    <td>2.28.0+</td>
+                                    <td>Requisicoes HTTP para download dos dados</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>
+                            O <code>pyqog</code> foi projetado para ser minimalista, com apenas duas dependencias externas.
+                            Ambas sao bibliotecas amplamente utilizadas e estaveis.
+                        </p>
+                    </div>
+
+                    <!-- Desenvolvimento -->
+                    <div id="desenvolvimento" class="mb-5">
+                        <h2 class="section-title">Instalacao de Desenvolvimento</h2>
+                        <p>
+                            Para contribuir com o projeto ou modificar o codigo fonte, instale em modo de desenvolvimento:
+                        </p>
+<pre><code><span class="cm"># Clonar o repositorio</span>
+git clone https://github.com/prof-danny-idp/pyqog.git
+cd pyqog
+
+<span class="cm"># Criar ambiente virtual</span>
+python -m venv .venv
+source .venv/bin/activate  <span class="cm"># ou .venv\Scripts\activate no Windows</span>
+
+<span class="cm"># Instalar em modo editavel</span>
+pip install -e .
+
+<span class="cm"># Instalar dependencias de teste</span>
+pip install pytest</code></pre>
+
+                        <h5 class="mt-4">Executar testes</h5>
+<pre><code><span class="cm"># Rodar todos os testes</span>
+pytest
+
+<span class="cm"># Rodar com output detalhado</span>
+pytest -v
+
+<span class="cm"># Rodar um teste especifico</span>
+pytest tests/test_urls.py</code></pre>
+                    </div>
+
+                    <!-- Verificacao -->
+                    <div id="verificacao" class="mb-5">
+                        <h2 class="section-title">Verificacao da Instalacao</h2>
+                        <p>Apos instalar, verifique que tudo esta funcionando:</p>
+<pre><code><span class="kw">import</span> pyqog
+
+<span class="cm"># Verificar versao</span>
+<span class="nb">print</span>(pyqog.__version__)
+
+<span class="cm"># Listar datasets disponiveis</span>
+<span class="nb">print</span>(pyqog.list_datasets())
+
+<span class="cm"># Testar download (requer internet na primeira vez)</span>
+df = pyqog.read_qog()
+<span class="nb">print</span>(f<span class="st">"Dataset carregado: {df.shape[0]} linhas, {df.shape[1]} colunas"</span>)</code></pre>
+                        <div class="notice-card">
+                            <p class="mb-0">
+                                <strong>Nota:</strong> O primeiro download requer conexao com a internet.
+                                Apos o download, os dados sao armazenados em cache em <code>~/.pyqog/cache/</code>
+                                e podem ser acessados offline.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Desinstalacao -->
+                    <div id="desinstalacao" class="mb-5">
+                        <h2 class="section-title">Desinstalacao</h2>
+                        <p>Para remover o pyqog:</p>
+<pre><code>pip uninstall pyqog</code></pre>
+                        <p class="mt-3">Para remover tambem o cache local de dados:</p>
+<pre><code><span class="cm"># Linux/Mac</span>
+rm -rf ~/.pyqog/
+
+<span class="cm"># Windows (PowerShell)</span>
+Remove-Item -Recurse -Force ~\.pyqog\</code></pre>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="notice-compact">
+                &#128218; <strong>pyqog</strong> &mdash; Ferramenta didatica do Professor Danny de Castro, IDP (Brasil).
+                Para dados oficiais: <a href="https://www.gu.se/en/quality-government">QoG Institute</a> |
+                Contato: <a href="mailto:danny.soares@idp.edu.br">danny.soares@idp.edu.br</a>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h6>pyqog</h6>
+                    <p class="mb-1"><a href="instalacao.html">Instalacao</a></p>
+                    <p class="mb-1"><a href="tutorial.html">Tutorial</a></p>
+                    <p class="mb-1"><a href="api.html">Referencia da API</a></p>
+                    <p class="mb-1"><a href="datasets.html">Datasets</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h6>QoG Institute</h6>
+                    <p class="mb-1"><a href="https://www.gu.se/en/quality-government" target="_blank" rel="noopener">Site Oficial</a></p>
+                    <p class="mb-1"><a href="https://www.gu.se/en/quality-government/qog-data/data-downloads" target="_blank" rel="noopener">Downloads</a></p>
+                    <p class="mb-1"><a href="https://datafinder.qog.gu.se/" target="_blank" rel="noopener">Data Finder</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Projeto</h6>
+                    <p class="mb-1"><a href="https://github.com/prof-danny-idp/pyqog" target="_blank" rel="noopener">GitHub</a></p>
+                    <p class="mb-1"><a href="mailto:danny.soares@idp.edu.br">Contato</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                &copy; 2026 pyqog. Licenca MIT. Dados fornecidos pelo <a href="https://www.gu.se/en/quality-government">QoG Institute</a>, Universidade de Gotemburgo.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/lang-switcher.js"></script>
+</body>
+</html>

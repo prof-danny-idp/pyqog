@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial — pyqog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">pyqog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="installation.html">Installation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="tutorial.html">Tutorial</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="api.html">API</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="datasets.html">Datasets</a>
+                    </li>
+                </ul>
+                <div class="lang-switcher">
+                    <a href="../pt/tutorial.html" class="btn btn-lang" data-lang="pt">PT</a>
+                    <a href="tutorial.html" class="btn btn-lang active" data-lang="en">EN</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Tutorial</li>
+                </ol>
+            </nav>
+            <h1>Tutorial</h1>
+            <p class="mb-0 mt-2" style="opacity: 0.85;">A complete guide to using pyqog for QoG data analysis.</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="content-section">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3">
+                    <nav class="sidebar">
+                        <nav class="nav flex-column">
+                            <a class="nav-link" href="#getting-started">Getting Started</a>
+                            <a class="nav-link" href="#basic-data">Basic Dataset</a>
+                            <a class="nav-link" href="#standard-data">Standard Dataset</a>
+                            <a class="nav-link" href="#oecd-data">OECD Dataset</a>
+                            <a class="nav-link" href="#ts-vs-cs">Time-Series vs Cross-Sectional</a>
+                            <a class="nav-link" href="#filtering">Filtering by Country &amp; Year</a>
+                            <a class="nav-link" href="#searching">Searching Variables</a>
+                            <a class="nav-link" href="#archive">Accessing Archive Data</a>
+                            <a class="nav-link" href="#visualization">Visualization Examples</a>
+                            <a class="nav-link" href="#cache">Working with Cache</a>
+                            <a class="nav-link" href="#codebooks">Codebooks</a>
+                        </nav>
+                    </nav>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-lg-9">
+
+                    <!-- Getting Started -->
+                    <div id="getting-started" class="mb-5">
+                        <h2 class="section-title">Getting Started</h2>
+                        <p>
+                            Make sure you have <code>pyqog</code> installed. If not, see the
+                            <a href="installation.html">Installation</a> page.
+                        </p>
+<pre><code><span class="kw">import</span> pyqog
+<span class="kw">import</span> pandas <span class="kw">as</span> pd</code></pre>
+                        <p class="mt-3">
+                            The core function is <code>read_qog()</code>, which downloads a QoG dataset and returns it
+                            as a pandas DataFrame. On the first call it downloads from the QoG servers; subsequent calls
+                            use the local cache.
+                        </p>
+                    </div>
+
+                    <!-- Basic Dataset -->
+                    <div id="basic-data" class="mb-5">
+                        <h2 class="section-title">Downloading the Basic Dataset</h2>
+                        <p>
+                            The <strong>Basic</strong> dataset contains a curated selection of the most commonly used
+                            governance and institutional quality indicators. It is a good starting point for most analyses.
+                        </p>
+<pre><code><span class="cm"># Download basic time-series dataset (latest version)</span>
+df = pyqog.read_qog()
+
+<span class="cm"># Explore the data</span>
+<span class="fn">print</span>(f<span class="st">"Shape: {df.shape}"</span>)
+<span class="fn">print</span>(f<span class="st">"Columns: {df.columns.tolist()[:10]}..."</span>)
+<span class="fn">print</span>(df.head())</code></pre>
+                        <p class="mt-3">
+                            By default, <code>read_qog()</code> downloads the <strong>basic</strong> dataset in
+                            <strong>time-series</strong> format for the most recent year of publication (2026).
+                        </p>
+                    </div>
+
+                    <!-- Standard Dataset -->
+                    <div id="standard-data" class="mb-5">
+                        <h2 class="section-title">Downloading the Standard Dataset</h2>
+                        <p>
+                            The <strong>Standard</strong> dataset is the most comprehensive QoG dataset, containing
+                            approximately 2,000 variables from hundreds of data sources. Use it when you need access
+                            to a wide range of indicators.
+                        </p>
+<pre><code><span class="cm"># Download standard time-series dataset</span>
+df_std = pyqog.read_qog(which_data=<span class="st">"standard"</span>)
+
+<span class="fn">print</span>(f<span class="st">"Variables: {len(df_std.columns)}"</span>)
+<span class="fn">print</span>(f<span class="st">"Rows: {len(df_std)}"</span>)</code></pre>
+                        <div class="notice-card" style="border-left-color: var(--warning); margin-top: 1rem;">
+                            <p class="mb-0">
+                                <strong>Note:</strong> The Standard dataset is large (typically 50+ MB as CSV). The first
+                                download may take some time. After caching, it loads instantly from disk.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- OECD Dataset -->
+                    <div id="oecd-data" class="mb-5">
+                        <h2 class="section-title">Downloading the OECD Dataset</h2>
+                        <p>
+                            The <strong>OECD</strong> dataset focuses on OECD member countries with indicators
+                            particularly relevant to developed economies.
+                        </p>
+<pre><code><span class="cm"># Download OECD time-series dataset</span>
+df_oecd = pyqog.read_qog(which_data=<span class="st">"oecd"</span>)
+
+<span class="cm"># Check which countries are included</span>
+<span class="fn">print</span>(df_oecd[<span class="st">"cname"</span>].unique())</code></pre>
+                    </div>
+
+                    <!-- Time-Series vs Cross-Sectional -->
+                    <div id="ts-vs-cs" class="mb-5">
+                        <h2 class="section-title">Time-Series vs Cross-Sectional</h2>
+                        <p>
+                            QoG datasets come in two formats:
+                        </p>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="feature-card">
+                                    <h5>Time-Series (TS)</h5>
+                                    <p class="text-muted">
+                                        Multiple observations per country across different years.
+                                        Each row is a country-year pair. Use this format for panel
+                                        data analysis, trends over time, and longitudinal studies.
+                                    </p>
+<pre><code><span class="cm"># Time-series (default)</span>
+df_ts = pyqog.read_qog(
+    data_type=<span class="st">"time-series"</span>
+)
+<span class="cm"># Columns: cname, year, ...</span></code></pre>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="feature-card">
+                                    <h5>Cross-Sectional (CS)</h5>
+                                    <p class="text-muted">
+                                        One observation per country (typically the most recent available
+                                        value for each indicator). Use this for snapshots and cross-country
+                                        comparisons at a single point in time.
+                                    </p>
+<pre><code><span class="cm"># Cross-sectional</span>
+df_cs = pyqog.read_qog(
+    data_type=<span class="st">"cross-sectional"</span>
+)
+<span class="cm"># Columns: cname, ...</span></code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filtering -->
+                    <div id="filtering" class="mb-5">
+                        <h2 class="section-title">Filtering by Country and Year</h2>
+                        <p>
+                            Since <code>read_qog()</code> returns a pandas DataFrame, you can use all standard
+                            pandas filtering methods.
+                        </p>
+
+                        <h5 class="mt-4">Filter by country</h5>
+<pre><code>df = pyqog.read_qog()
+
+<span class="cm"># Single country</span>
+brazil = df[df[<span class="st">"cname"</span>] == <span class="st">"Brazil"</span>]
+<span class="fn">print</span>(brazil.head())
+
+<span class="cm"># Multiple countries</span>
+latam = df[df[<span class="st">"cname"</span>].isin([<span class="st">"Brazil"</span>, <span class="st">"Argentina"</span>, <span class="st">"Chile"</span>, <span class="st">"Colombia"</span>])]
+<span class="fn">print</span>(latam.head())</code></pre>
+
+                        <h5 class="mt-4">Filter by year</h5>
+<pre><code><span class="cm"># Single year</span>
+df_2020 = df[df[<span class="st">"year"</span>] == <span class="nb">2020</span>]
+
+<span class="cm"># Year range</span>
+df_recent = df[(df[<span class="st">"year"</span>] >= <span class="nb">2010</span>) &amp; (df[<span class="st">"year"</span>] &lt;= <span class="nb">2020</span>)]</code></pre>
+
+                        <h5 class="mt-4">Combine filters</h5>
+<pre><code><span class="cm"># Brazil from 2000 to 2020</span>
+brazil_2000s = df[
+    (df[<span class="st">"cname"</span>] == <span class="st">"Brazil"</span>) &amp;
+    (df[<span class="st">"year"</span>] >= <span class="nb">2000</span>) &amp;
+    (df[<span class="st">"year"</span>] &lt;= <span class="nb">2020</span>)
+]
+<span class="fn">print</span>(brazil_2000s[[<span class="st">"cname"</span>, <span class="st">"year"</span>]].head())</code></pre>
+
+                        <h5 class="mt-4">Select specific columns</h5>
+<pre><code><span class="cm"># Select only the columns you need</span>
+cols = [<span class="st">"cname"</span>, <span class="st">"year"</span>, <span class="st">"ccode"</span>, <span class="st">"wdi_gdpcapcon2017"</span>, <span class="st">"vdem_corr"</span>]
+subset = df[cols].dropna()
+<span class="fn">print</span>(subset.head())</code></pre>
+                    </div>
+
+                    <!-- Searching Variables -->
+                    <div id="searching" class="mb-5">
+                        <h2 class="section-title">Searching Variables</h2>
+                        <p>
+                            QoG datasets contain many variables. Use <code>search_variables()</code> to find columns
+                            matching a pattern.
+                        </p>
+<pre><code>df = pyqog.read_qog(which_data=<span class="st">"standard"</span>)
+
+<span class="cm"># Search for variables related to corruption</span>
+corruption_vars = pyqog.search_variables(df, <span class="st">"corrupt"</span>)
+<span class="fn">print</span>(corruption_vars)
+<span class="cm"># ['ti_cpi', 'vdem_corr', 'wbgi_cce', ...]</span>
+
+<span class="cm"># Search for GDP-related variables</span>
+gdp_vars = pyqog.search_variables(df, <span class="st">"gdp"</span>)
+<span class="fn">print</span>(gdp_vars)
+
+<span class="cm"># Search for democracy indicators</span>
+demo_vars = pyqog.search_variables(df, <span class="st">"demo"</span>)
+<span class="fn">print</span>(demo_vars)</code></pre>
+                        <p class="mt-3">
+                            The search is case-insensitive and matches any part of the column name. For a complete
+                            description of each variable, refer to the
+                            <a href="datasets.html">codebooks</a>.
+                        </p>
+                    </div>
+
+                    <!-- Archive Data -->
+                    <div id="archive" class="mb-5">
+                        <h2 class="section-title">Accessing Archive Data</h2>
+                        <p>
+                            QoG maintains an archive of previous dataset versions. You can download any past version
+                            by specifying the <code>year</code> parameter. This refers to the year of <strong>publication</strong>,
+                            not the year of the data itself.
+                        </p>
+<pre><code><span class="cm"># Download the 2020 version of the basic dataset</span>
+df_2020 = pyqog.read_qog(which_data=<span class="st">"basic"</span>, year=<span class="nb">2020</span>)
+
+<span class="cm"># Download the 2018 version of the standard dataset</span>
+df_std_2018 = pyqog.read_qog(which_data=<span class="st">"standard"</span>, year=<span class="nb">2018</span>)
+
+<span class="cm"># List available versions for a dataset</span>
+versions = pyqog.list_versions(<span class="st">"standard"</span>)
+<span class="fn">print</span>(versions)
+<span class="cm"># [2026, 2025, 2024, 2023, 2022, 2021, 2020, ...]</span></code></pre>
+                        <div class="notice-card" style="border-left-color: var(--warning); margin-top: 1rem;">
+                            <p class="mb-0">
+                                <strong>Important:</strong> The <code>year</code> parameter refers to the
+                                <em>publication year</em> of the dataset, not the year of the data. For example,
+                                <code>year=2020</code> downloads the dataset version published in January 2020, which
+                                contains data up to approximately 2018-2019.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Visualization -->
+                    <div id="visualization" class="mb-5">
+                        <h2 class="section-title">Visualization Examples</h2>
+                        <p>
+                            Since <code>pyqog</code> returns pandas DataFrames, you can use any Python visualization
+                            library. Here are some examples with <code>matplotlib</code> and <code>seaborn</code>.
+                        </p>
+
+                        <h5 class="mt-4">Example 1: GDP per capita over time</h5>
+<pre><code><span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> plt
+
+df = pyqog.read_qog(which_data=<span class="st">"standard"</span>)
+
+<span class="cm"># Filter for select countries</span>
+countries = [<span class="st">"Brazil"</span>, <span class="st">"Argentina"</span>, <span class="st">"Chile"</span>, <span class="st">"Mexico"</span>]
+subset = df[df[<span class="st">"cname"</span>].isin(countries)]
+
+<span class="cm"># Plot GDP per capita over time</span>
+fig, ax = plt.subplots(figsize=(<span class="nb">10</span>, <span class="nb">6</span>))
+<span class="kw">for</span> country <span class="kw">in</span> countries:
+    data = subset[subset[<span class="st">"cname"</span>] == country]
+    ax.plot(data[<span class="st">"year"</span>], data[<span class="st">"wdi_gdpcapcon2017"</span>], label=country)
+
+ax.set_xlabel(<span class="st">"Year"</span>)
+ax.set_ylabel(<span class="st">"GDP per capita (constant 2017 USD)"</span>)
+ax.set_title(<span class="st">"GDP per capita: Latin American Countries"</span>)
+ax.legend()
+plt.tight_layout()
+plt.show()</code></pre>
+
+                        <h5 class="mt-4">Example 2: Corruption vs GDP scatter plot</h5>
+<pre><code><span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> plt
+
+<span class="cm"># Use cross-sectional data for a snapshot</span>
+df_cs = pyqog.read_qog(which_data=<span class="st">"standard"</span>, data_type=<span class="st">"cross-sectional"</span>)
+
+fig, ax = plt.subplots(figsize=(<span class="nb">10</span>, <span class="nb">6</span>))
+ax.scatter(
+    df_cs[<span class="st">"wdi_gdpcapcon2017"</span>],
+    df_cs[<span class="st">"vdem_corr"</span>],
+    alpha=<span class="nb">0.6</span>,
+    edgecolors=<span class="st">"white"</span>,
+    linewidth=<span class="nb">0.5</span>
+)
+ax.set_xlabel(<span class="st">"GDP per capita (constant 2017 USD)"</span>)
+ax.set_ylabel(<span class="st">"Corruption Index (V-Dem)"</span>)
+ax.set_title(<span class="st">"Corruption vs GDP per capita"</span>)
+plt.tight_layout()
+plt.show()</code></pre>
+
+                        <h5 class="mt-4">Example 3: Bar chart with seaborn</h5>
+<pre><code><span class="kw">import</span> seaborn <span class="kw">as</span> sns
+<span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> plt
+
+df_cs = pyqog.read_qog(which_data=<span class="st">"standard"</span>, data_type=<span class="st">"cross-sectional"</span>)
+
+<span class="cm"># Top 20 countries by GDP per capita</span>
+top20 = df_cs.nlargest(<span class="nb">20</span>, <span class="st">"wdi_gdpcapcon2017"</span>)
+
+fig, ax = plt.subplots(figsize=(<span class="nb">12</span>, <span class="nb">6</span>))
+sns.barplot(
+    data=top20,
+    x=<span class="st">"wdi_gdpcapcon2017"</span>,
+    y=<span class="st">"cname"</span>,
+    palette=<span class="st">"viridis"</span>,
+    ax=ax
+)
+ax.set_xlabel(<span class="st">"GDP per capita (constant 2017 USD)"</span>)
+ax.set_ylabel(<span class="st">""</span>)
+ax.set_title(<span class="st">"Top 20 Countries by GDP per Capita"</span>)
+plt.tight_layout()
+plt.show()</code></pre>
+                    </div>
+
+                    <!-- Cache -->
+                    <div id="cache" class="mb-5">
+                        <h2 class="section-title">Working with Cache</h2>
+                        <p>
+                            <code>pyqog</code> automatically caches downloaded datasets to avoid repeated downloads.
+                        </p>
+
+                        <h5 class="mt-4">Default behavior</h5>
+<pre><code><span class="cm"># First call: downloads from the internet</span>
+df = pyqog.read_qog()
+
+<span class="cm"># Second call: loads from local cache (instant)</span>
+df = pyqog.read_qog()</code></pre>
+
+                        <h5 class="mt-4">Force re-download</h5>
+<pre><code><span class="cm"># Force a fresh download, overwriting cache</span>
+df = pyqog.read_qog(update_cache=<span class="nb">True</span>)</code></pre>
+
+                        <h5 class="mt-4">Disable caching</h5>
+<pre><code><span class="cm"># Download without saving to cache</span>
+df = pyqog.read_qog(cache=<span class="nb">False</span>)</code></pre>
+
+                        <h5 class="mt-4">Custom cache directory</h5>
+<pre><code><span class="cm"># Use a custom directory for cached files</span>
+df = pyqog.read_qog(data_dir=<span class="st">"/path/to/my/cache"</span>)</code></pre>
+                        <p class="mt-3">
+                            By default, cached files are stored in <code>~/.pyqog/cache/</code>. Each file follows the
+                            naming pattern <code>qog_{dataset}_{type}_{version}.csv</code>.
+                        </p>
+                    </div>
+
+                    <!-- Codebooks -->
+                    <div id="codebooks" class="mb-5">
+                        <h2 class="section-title">Codebooks</h2>
+                        <p>
+                            Each QoG dataset has an accompanying codebook (PDF) that describes every variable in detail.
+                            You can get the URL programmatically:
+                        </p>
+<pre><code><span class="cm"># Get the codebook URL for the standard dataset</span>
+url = pyqog.get_codebook_url(<span class="st">"standard"</span>, <span class="nb">2026</span>)
+<span class="fn">print</span>(url)
+<span class="cm"># https://www.qogdata.pol.gu.se/data/codebook_std_jan26.pdf</span>
+
+<span class="cm"># Get codebook for an archived version</span>
+url_old = pyqog.get_codebook_url(<span class="st">"basic"</span>, <span class="nb">2020</span>)
+<span class="fn">print</span>(url_old)
+<span class="cm"># https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_jan20.pdf</span></code></pre>
+                        <p class="mt-3">
+                            For a complete list of codebook links, see the <a href="datasets.html">Datasets</a> page.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="notice-compact">
+                &#128218; <strong>pyqog</strong> &mdash; Teaching tool for Data Science courses by Professor Danny de Castro, IDP (Brazil).
+                For official data: <a href="https://www.gu.se/en/quality-government" target="_blank" rel="noopener">QoG Institute</a> |
+                Contact: <a href="mailto:danny.soares@idp.edu.br">danny.soares@idp.edu.br</a>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h6>pyqog</h6>
+                    <p>Python client for QoG Institute data. MIT License.</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="https://www.gu.se/en/quality-government" target="_blank" rel="noopener">QoG Institute</a></li>
+                        <li><a href="https://www.gu.se/en/quality-government/qog-data/data-downloads" target="_blank" rel="noopener">Data Downloads</a></li>
+                        <li><a href="https://datafinder.qog.gu.se/" target="_blank" rel="noopener">QoG Data Finder</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6>Documentation</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="installation.html">Installation</a></li>
+                        <li><a href="tutorial.html">Tutorial</a></li>
+                        <li><a href="api.html">API Reference</a></li>
+                        <li><a href="datasets.html">Datasets</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                &copy; 2026 pyqog. MIT License. Data provided by <a href="https://www.gu.se/en/quality-government">QoG Institute</a>, University of Gothenburg.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/lang-switcher.js"></script>
+</body>
+</html>

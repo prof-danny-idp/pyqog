@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pyqog — Cliente Python para dados QoG</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">pyqog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="instalacao.html">Instalacao</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tutorial.html">Tutorial</a></li>
+                    <li class="nav-item"><a class="nav-link" href="api.html">API</a></li>
+                    <li class="nav-item"><a class="nav-link" href="datasets.html">Datasets</a></li>
+                </ul>
+                <div class="lang-switcher">
+                    <a href="index.html" class="btn btn-lang active" data-lang="pt">PT</a>
+                    <a href="../en/index.html" class="btn btn-lang" data-lang="en">EN</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" style="padding-top: 120px;">
+        <div class="container">
+            <h1>pyqog</h1>
+            <p class="lead">
+                Cliente Python para dados do Quality of Government (QoG) Institute.<br>
+                Baixe, armazene em cache e analise dados de governanca mundial com facilidade.
+            </p>
+            <div class="install-badge">pip install pyqog</div>
+        </div>
+    </section>
+
+    <!-- Institutional Notice Card -->
+    <section class="content-section">
+        <div class="container">
+            <div class="notice-card">
+                <h5>&#128218; Sobre este pacote</h5>
+                <p>
+                    O <code>pyqog</code> foi desenvolvido como ferramenta didatica para exercicios em sala de aula das disciplinas de
+                    <strong>Data Science</strong> do <strong>Professor Danny de Castro</strong> no
+                    <strong>IDP &ndash; Instituto Brasileiro de Ensino, Desenvolvimento e Pesquisa</strong>.
+                </p>
+                <p>
+                    Este pacote facilita o acesso aos dados do Quality of Government Institute para fins educacionais e de pesquisa
+                    academica. <strong>Para uso de dados oficiais e como fonte de informacao oficial, acesse diretamente o site do QoG Institute:</strong>
+                </p>
+                <p>
+                    &#128279; <a href="https://www.gu.se/en/quality-government" target="_blank" rel="noopener">https://www.gu.se/en/quality-government</a>
+                </p>
+                <p>
+                    Encontrou algum erro ou tem sugestoes? Entre em contato: <strong><a href="mailto:danny.soares@idp.edu.br">danny.soares@idp.edu.br</a></strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is QoG -->
+    <section class="content-section" id="qog">
+        <div class="container">
+            <h2 class="section-title">O que e o QoG?</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <p>
+                        O <strong>Quality of Government Institute</strong> (QoG) e um instituto de pesquisa da Universidade de Gotemburgo, na Suecia.
+                        O instituto coleta e disponibiliza dados sobre qualidade de governo, corrupcao, democracia, burocracia e diversas
+                        outras dimensoes politicas e sociais.
+                    </p>
+                    <p>
+                        Os datasets do QoG integram centenas de variaveis de diferentes fontes internacionais (Banco Mundial, ONU, Transparency International,
+                        Freedom House, entre outras) em bases de dados padronizadas, facilitando a pesquisa comparativa entre paises.
+                    </p>
+                    <p>
+                        Saiba mais: <a href="https://www.gu.se/en/quality-government" target="_blank" rel="noopener">Site oficial do QoG Institute</a>
+                    </p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="feature-card">
+                        <div class="icon">&#127758;</div>
+                        <h5>Dados Globais</h5>
+                        <p class="text-muted">Cobertura de mais de 190 paises com series temporais longas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is pyqog -->
+    <section class="content-section" id="pyqog">
+        <div class="container">
+            <h2 class="section-title">O que e o pyqog?</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <p>
+                        O <code>pyqog</code> e um pacote Python que facilita o download, armazenamento em cache e uso dos datasets do
+                        QoG Institute diretamente no Python. Inspirado no pacote R
+                        <a href="https://github.com/rOpenGov/rqog" target="_blank" rel="noopener">rqog</a>, o pyqog permite:
+                    </p>
+                    <ul>
+                        <li>Baixar dados do QoG em formato CSV com um unico comando</li>
+                        <li>Armazenar dados em cache local para uso offline</li>
+                        <li>Acessar versoes atuais e historicas dos datasets</li>
+                        <li>Buscar variaveis por nome</li>
+                        <li>Obter URLs dos codebooks em PDF</li>
+                        <li>Listar todos os datasets e versoes disponiveis</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <div class="feature-card">
+                        <div class="icon">&#128013;</div>
+                        <h5>Simples e Pythonico</h5>
+                        <p class="text-muted">Apenas duas dependencias: pandas e requests. Minimalista e eficiente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start -->
+    <section class="content-section" id="quickstart">
+        <div class="container">
+            <h2 class="section-title">Inicio Rapido</h2>
+            <div class="quickstart">
+                <h5>1. Instale o pacote</h5>
+<pre><code>pip install pyqog</code></pre>
+
+                <h5 class="mt-4">2. Baixe dados do QoG</h5>
+<pre><code><span class="kw">import</span> pyqog
+
+<span class="cm"># Baixar dados basicos (time-series, versao mais recente)</span>
+df = pyqog.read_qog()
+
+<span class="cm"># Baixar dados standard cross-sectional</span>
+df = pyqog.read_qog(which_data=<span class="st">"standard"</span>, data_type=<span class="st">"cross-sectional"</span>)
+
+<span class="cm"># Baixar versao antiga (2020)</span>
+df = pyqog.read_qog(which_data=<span class="st">"basic"</span>, year=<span class="nb">2020</span>)
+
+<span class="cm"># Listar datasets disponiveis</span>
+pyqog.list_datasets()
+
+<span class="cm"># Buscar variaveis com "corruption" no nome</span>
+cols = pyqog.search_variables(df, <span class="st">"corrupt"</span>)
+</code></pre>
+
+                <h5 class="mt-4">3. Explore os dados</h5>
+<pre><code><span class="cm"># Ver primeiras linhas</span>
+<span class="nb">print</span>(df.head())
+
+<span class="cm"># Filtrar por pais</span>
+brasil = df[df[<span class="st">"cname"</span>] == <span class="st">"Brazil"</span>]
+
+<span class="cm"># Info sobre o dataset</span>
+info = pyqog.describe_dataset(<span class="st">"basic"</span>)
+<span class="nb">print</span>(info)
+</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Cards -->
+    <section class="content-section" id="secoes">
+        <div class="container">
+            <h2 class="section-title">Explore a Documentacao</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <a href="instalacao.html" class="text-decoration-none">
+                        <div class="feature-card">
+                            <div class="icon">&#128230;</div>
+                            <h5>Instalacao</h5>
+                            <p class="text-muted">Como instalar o pyqog via pip e configurar o ambiente de desenvolvimento.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="tutorial.html" class="text-decoration-none">
+                        <div class="feature-card">
+                            <div class="icon">&#128214;</div>
+                            <h5>Tutorial Completo</h5>
+                            <p class="text-muted">Guia passo a passo para baixar, filtrar e analisar dados do QoG.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="api.html" class="text-decoration-none">
+                        <div class="feature-card">
+                            <div class="icon">&#128736;</div>
+                            <h5>Referencia da API</h5>
+                            <p class="text-muted">Documentacao detalhada de todas as funcoes do pacote.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="datasets.html" class="text-decoration-none">
+                        <div class="feature-card">
+                            <div class="icon">&#128202;</div>
+                            <h5>Datasets Disponiveis</h5>
+                            <p class="text-muted">Tabela completa com todos os datasets, versoes e links para codebooks.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="https://datafinder.qog.gu.se/" target="_blank" rel="noopener" class="text-decoration-none">
+                        <div class="feature-card">
+                            <div class="icon">&#128269;</div>
+                            <h5>QoG Data Finder</h5>
+                            <p class="text-muted">Ferramenta oficial do QoG para buscar e explorar variaveis.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="https://github.com/prof-danny-idp/pyqog" target="_blank" rel="noopener" class="text-decoration-none">
+                        <div class="feature-card">
+                            <div class="icon">&#128187;</div>
+                            <h5>Codigo Fonte</h5>
+                            <p class="text-muted">Repositorio no GitHub. Contribuicoes e issues sao bem-vindas.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Citation -->
+    <section class="content-section" id="citacao">
+        <div class="container">
+            <h2 class="section-title">Citacao</h2>
+            <div class="quickstart">
+                <p>Se utilizar dados do QoG em sua pesquisa, cite:</p>
+                <blockquote class="blockquote" style="border-left: 4px solid var(--accent); padding-left: 16px; color: var(--text-muted);">
+                    Teorell, Jan, et al. 2026. The Quality of Government Standard Dataset, version Jan26.
+                    University of Gothenburg: The Quality of Government Institute,
+                    <a href="https://www.gu.se/en/quality-government" target="_blank" rel="noopener">https://www.gu.se/en/quality-government</a>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="notice-compact">
+                &#128218; <strong>pyqog</strong> &mdash; Ferramenta didatica do Professor Danny de Castro, IDP (Brasil).
+                Para dados oficiais: <a href="https://www.gu.se/en/quality-government">QoG Institute</a> |
+                Contato: <a href="mailto:danny.soares@idp.edu.br">danny.soares@idp.edu.br</a>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h6>pyqog</h6>
+                    <p class="mb-1"><a href="instalacao.html">Instalacao</a></p>
+                    <p class="mb-1"><a href="tutorial.html">Tutorial</a></p>
+                    <p class="mb-1"><a href="api.html">Referencia da API</a></p>
+                    <p class="mb-1"><a href="datasets.html">Datasets</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h6>QoG Institute</h6>
+                    <p class="mb-1"><a href="https://www.gu.se/en/quality-government" target="_blank" rel="noopener">Site Oficial</a></p>
+                    <p class="mb-1"><a href="https://www.gu.se/en/quality-government/qog-data/data-downloads" target="_blank" rel="noopener">Downloads</a></p>
+                    <p class="mb-1"><a href="https://datafinder.qog.gu.se/" target="_blank" rel="noopener">Data Finder</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Projeto</h6>
+                    <p class="mb-1"><a href="https://github.com/prof-danny-idp/pyqog" target="_blank" rel="noopener">GitHub</a></p>
+                    <p class="mb-1"><a href="mailto:danny.soares@idp.edu.br">Contato</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                &copy; 2026 pyqog. Licenca MIT. Dados fornecidos pelo <a href="https://www.gu.se/en/quality-government">QoG Institute</a>, Universidade de Gotemburgo.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/lang-switcher.js"></script>
+</body>
+</html>

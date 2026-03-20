@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datasets Disponiveis — pyqog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">pyqog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="instalacao.html">Instalacao</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tutorial.html">Tutorial</a></li>
+                    <li class="nav-item"><a class="nav-link" href="api.html">API</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="datasets.html">Datasets</a></li>
+                </ul>
+                <div class="lang-switcher">
+                    <a href="datasets.html" class="btn btn-lang active" data-lang="pt">PT</a>
+                    <a href="../en/datasets.html" class="btn btn-lang" data-lang="en">EN</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header" style="padding-top: 100px;">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Datasets Disponiveis</li>
+                </ol>
+            </nav>
+            <h1>Datasets Disponiveis</h1>
+            <p class="mb-0" style="opacity: 0.8;">Todos os datasets do QoG acessiveis via pyqog, com links para codebooks em PDF.</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="content-section">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3">
+                    <nav class="sidebar">
+                        <nav class="nav flex-column">
+                            <a class="nav-link" href="#visao-geral">Visao Geral</a>
+                            <a class="nav-link" href="#basic">Basic</a>
+                            <a class="nav-link" href="#standard">Standard</a>
+                            <a class="nav-link" href="#oecd">OECD</a>
+                            <a class="nav-link" href="#environmental">Environmental</a>
+                            <a class="nav-link" href="#social-policy">Social Policy</a>
+                            <a class="nav-link" href="#codebooks">Codebooks por Versao</a>
+                            <a class="nav-link" href="#links-externos">Links Externos</a>
+                        </nav>
+                    </nav>
+                </div>
+
+                <!-- Main content -->
+                <div class="col-lg-9">
+
+                    <!-- Visao Geral -->
+                    <div id="visao-geral" class="mb-5">
+                        <h2 class="section-title">Visao Geral dos Datasets</h2>
+                        <p>
+                            O Quality of Government Institute disponibiliza cinco datasets principais, cada um
+                            disponivel nos formatos time-series (ts) e cross-sectional (cs).
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Dataset</th>
+                                        <th>Prefixo</th>
+                                        <th>Parametro pyqog</th>
+                                        <th>Descricao</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Basic</strong></td>
+                                        <td><code>bas</code></td>
+                                        <td><code>"basic"</code></td>
+                                        <td>Subconjunto selecionado de variaveis do QoG Standard. Ideal para ensino e analises rapidas.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Standard</strong></td>
+                                        <td><code>std</code></td>
+                                        <td><code>"standard"</code></td>
+                                        <td>Dataset completo com centenas de variaveis de diversas fontes internacionais. O mais abrangente.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>OECD</strong></td>
+                                        <td><code>oecd</code></td>
+                                        <td><code>"oecd"</code></td>
+                                        <td>Dados especificos para paises membros da OCDE, com variaveis adicionais pertinentes.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Environmental Indicators</strong></td>
+                                        <td><code>ei</code></td>
+                                        <td><code>"environmental"</code></td>
+                                        <td>Indicadores ambientais e de sustentabilidade de governanca.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Social Policy</strong></td>
+                                        <td><code>soc</code></td>
+                                        <td><code>"social_policy"</code></td>
+                                        <td>Dados sobre politicas sociais, bem-estar e sistemas de protecao social.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Basic -->
+                    <div id="basic" class="mb-5">
+                        <h2 class="section-title">QoG Basic Dataset</h2>
+                        <div class="dataset-card">
+                            <h6>Descricao</h6>
+                            <p class="text-muted">
+                                O QoG Basic Dataset e um subconjunto do QoG Standard, contendo uma selecao das variaveis mais
+                                utilizadas em pesquisa comparativa. E ideal para estudantes e para analises exploratorias que nao
+                                necessitam do conjunto completo de variaveis.
+                            </p>
+                            <p><strong>Prefixo:</strong> <code>bas</code> | <strong>Formatos:</strong> time-series (ts), cross-sectional (cs)</p>
+                            <p><strong>Codebook atual:</strong> <a href="https://www.qogdata.pol.gu.se/data/codebook_bas_jan26.pdf" target="_blank" rel="noopener">codebook_bas_jan26.pdf</a></p>
+                        </div>
+<pre><code><span class="cm"># Baixar QoG Basic</span>
+df = pyqog.read_qog(which_data=<span class="st">"basic"</span>)                         <span class="cm"># time-series</span>
+df = pyqog.read_qog(which_data=<span class="st">"basic"</span>, data_type=<span class="st">"cross-sectional"</span>)  <span class="cm"># cross-sectional</span></code></pre>
+                    </div>
+
+                    <!-- Standard -->
+                    <div id="standard" class="mb-5">
+                        <h2 class="section-title">QoG Standard Dataset</h2>
+                        <div class="dataset-card">
+                            <h6>Descricao</h6>
+                            <p class="text-muted">
+                                O QoG Standard Dataset e o dataset mais completo, contendo centenas de variaveis de diversas fontes
+                                internacionais como Banco Mundial, ONU, Transparency International, Freedom House, V-Dem, entre
+                                muitas outras. Cobre temas como democracia, corrupcao, economia, saude, educacao e meio ambiente.
+                            </p>
+                            <p><strong>Prefixo:</strong> <code>std</code> | <strong>Formatos:</strong> time-series (ts), cross-sectional (cs)</p>
+                            <p><strong>Codebook atual:</strong> <a href="https://www.qogdata.pol.gu.se/data/codebook_std_jan26.pdf" target="_blank" rel="noopener">codebook_std_jan26.pdf</a></p>
+                        </div>
+<pre><code><span class="cm"># Baixar QoG Standard</span>
+df = pyqog.read_qog(which_data=<span class="st">"standard"</span>)                         <span class="cm"># time-series</span>
+df = pyqog.read_qog(which_data=<span class="st">"standard"</span>, data_type=<span class="st">"cross-sectional"</span>)  <span class="cm"># cross-sectional</span></code></pre>
+                    </div>
+
+                    <!-- OECD -->
+                    <div id="oecd" class="mb-5">
+                        <h2 class="section-title">QoG OECD Dataset</h2>
+                        <div class="dataset-card">
+                            <h6>Descricao</h6>
+                            <p class="text-muted">
+                                O QoG OECD Dataset contem dados especificos para os paises membros da Organizacao para a
+                                Cooperacao e Desenvolvimento Economico (OCDE). Inclui variaveis adicionais que so estao
+                                disponiveis para esse grupo de paises.
+                            </p>
+                            <p><strong>Prefixo:</strong> <code>oecd</code> | <strong>Formatos:</strong> time-series (ts), cross-sectional (cs)</p>
+                            <p><strong>Codebook atual:</strong> <a href="https://www.qogdata.pol.gu.se/data/codebook_oecd_jan26.pdf" target="_blank" rel="noopener">codebook_oecd_jan26.pdf</a></p>
+                        </div>
+<pre><code><span class="cm"># Baixar QoG OECD</span>
+df = pyqog.read_qog(which_data=<span class="st">"oecd"</span>)                         <span class="cm"># time-series</span>
+df = pyqog.read_qog(which_data=<span class="st">"oecd"</span>, data_type=<span class="st">"cross-sectional"</span>)  <span class="cm"># cross-sectional</span></code></pre>
+                    </div>
+
+                    <!-- Environmental -->
+                    <div id="environmental" class="mb-5">
+                        <h2 class="section-title">QoG Environmental Indicators</h2>
+                        <div class="dataset-card">
+                            <h6>Descricao</h6>
+                            <p class="text-muted">
+                                O QoG Environmental Indicators Dataset foca em indicadores ambientais e de sustentabilidade,
+                                incluindo variaveis sobre emissoes, energia, recursos naturais e politicas ambientais.
+                            </p>
+                            <p><strong>Prefixo:</strong> <code>ei</code> | <strong>Formatos:</strong> time-series (ts), cross-sectional (cs)</p>
+                            <p><strong>Codebook atual:</strong> <a href="https://www.qogdata.pol.gu.se/data/codebook_ei_jan26.pdf" target="_blank" rel="noopener">codebook_ei_jan26.pdf</a></p>
+                        </div>
+<pre><code><span class="cm"># Baixar QoG Environmental</span>
+df = pyqog.read_qog(which_data=<span class="st">"environmental"</span>)                         <span class="cm"># time-series</span>
+df = pyqog.read_qog(which_data=<span class="st">"environmental"</span>, data_type=<span class="st">"cross-sectional"</span>)  <span class="cm"># cross-sectional</span></code></pre>
+                    </div>
+
+                    <!-- Social Policy -->
+                    <div id="social-policy" class="mb-5">
+                        <h2 class="section-title">QoG Social Policy Dataset</h2>
+                        <div class="dataset-card">
+                            <h6>Descricao</h6>
+                            <p class="text-muted">
+                                O QoG Social Policy Dataset contem dados sobre politicas sociais, sistemas de bem-estar,
+                                protecao social, gastos sociais e indicadores relacionados.
+                            </p>
+                            <p><strong>Prefixo:</strong> <code>soc</code> | <strong>Formatos:</strong> time-series (ts), cross-sectional (cs)</p>
+                            <p><strong>Codebook atual:</strong> <a href="https://www.qogdata.pol.gu.se/data/codebook_soc_jan26.pdf" target="_blank" rel="noopener">codebook_soc_jan26.pdf</a></p>
+                        </div>
+<pre><code><span class="cm"># Baixar QoG Social Policy</span>
+df = pyqog.read_qog(which_data=<span class="st">"social_policy"</span>)                         <span class="cm"># time-series</span>
+df = pyqog.read_qog(which_data=<span class="st">"social_policy"</span>, data_type=<span class="st">"cross-sectional"</span>)  <span class="cm"># cross-sectional</span></code></pre>
+                    </div>
+
+                    <!-- Codebooks por Versao -->
+                    <div id="codebooks" class="mb-5">
+                        <h2 class="section-title">Codebooks por Versao</h2>
+                        <p>
+                            Abaixo estao os links diretos para os codebooks em PDF de todas as versoes e datasets.
+                            Os codebooks descrevem cada variavel do dataset em detalhe, incluindo fonte, periodo de
+                            cobertura e definicoes.
+                        </p>
+
+                        <div class="notice-card">
+                            <p class="mb-0">
+                                <strong>Nota:</strong> A versao atual (Jan 2026) utiliza o servidor principal
+                                (<code>qogdata.pol.gu.se/data/</code>). Versoes anteriores utilizam o servidor de arquivo
+                                (<code>qogdata.pol.gu.se/dataarchive/</code>). Nem todos os codebooks estao disponiveis
+                                para todas as combinacoes de dataset e versao.
+                            </p>
+                        </div>
+
+                        <!-- Basic Codebooks -->
+                        <h4 class="mt-4 mb-3">Basic (<code>bas</code>)</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Versao</th>
+                                        <th>Identificador</th>
+                                        <th>Codebook PDF</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="badge-dataset">Atual</span> Jan 2026</td>
+                                        <td><code>jan26</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/data/codebook_bas_jan26.pdf" target="_blank" rel="noopener">codebook_bas_jan26.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2025</td>
+                                        <td><code>jan25</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_jan25.pdf" target="_blank" rel="noopener">codebook_bas_jan25.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2024</td>
+                                        <td><code>jan24</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_jan24.pdf" target="_blank" rel="noopener">codebook_bas_jan24.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2023</td>
+                                        <td><code>jan23</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_jan23.pdf" target="_blank" rel="noopener">codebook_bas_jan23.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2022</td>
+                                        <td><code>jan22</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_jan22.pdf" target="_blank" rel="noopener">codebook_bas_jan22.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2021</td>
+                                        <td><code>jan21</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_jan21.pdf" target="_blank" rel="noopener">codebook_bas_jan21.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2020</td>
+                                        <td><code>jan20</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_jan20.pdf" target="_blank" rel="noopener">codebook_bas_jan20.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2019</td>
+                                        <td><code>jan19</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_jan19.pdf" target="_blank" rel="noopener">codebook_bas_jan19.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2018</td>
+                                        <td><code>jan18</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_jan18.pdf" target="_blank" rel="noopener">codebook_bas_jan18.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2017</td>
+                                        <td><code>jan17</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_jan17.pdf" target="_blank" rel="noopener">codebook_bas_jan17.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2016</td>
+                                        <td><code>jan16</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_jan16.pdf" target="_blank" rel="noopener">codebook_bas_jan16.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2015</td>
+                                        <td><code>jan15</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_jan15.pdf" target="_blank" rel="noopener">codebook_bas_jan15.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2014</td>
+                                        <td><code>jan14</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_jan14.pdf" target="_blank" rel="noopener">codebook_bas_jan14.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aug 2013</td>
+                                        <td><code>30aug13</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_30aug13.pdf" target="_blank" rel="noopener">codebook_bas_30aug13.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>May 2012</td>
+                                        <td><code>21may12</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_21may12.pdf" target="_blank" rel="noopener">codebook_bas_21may12.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apr 2011</td>
+                                        <td><code>6apr11</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_6apr11.pdf" target="_blank" rel="noopener">codebook_bas_6apr11.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>May 2010</td>
+                                        <td><code>27may10</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_27may10.pdf" target="_blank" rel="noopener">codebook_bas_27may10.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sep 2009</td>
+                                        <td><code>17sep09</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_17sep09.pdf" target="_blank" rel="noopener">codebook_bas_17sep09.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>May 2008</td>
+                                        <td><code>15may08</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_15may08.pdf" target="_blank" rel="noopener">codebook_bas_15may08.pdf</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Standard Codebooks -->
+                        <h4 class="mt-5 mb-3">Standard (<code>std</code>)</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Versao</th>
+                                        <th>Identificador</th>
+                                        <th>Codebook PDF</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="badge-dataset">Atual</span> Jan 2026</td>
+                                        <td><code>jan26</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/data/codebook_std_jan26.pdf" target="_blank" rel="noopener">codebook_std_jan26.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2025</td>
+                                        <td><code>jan25</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_jan25.pdf" target="_blank" rel="noopener">codebook_std_jan25.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2024</td>
+                                        <td><code>jan24</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_jan24.pdf" target="_blank" rel="noopener">codebook_std_jan24.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2023</td>
+                                        <td><code>jan23</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_jan23.pdf" target="_blank" rel="noopener">codebook_std_jan23.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2022</td>
+                                        <td><code>jan22</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_jan22.pdf" target="_blank" rel="noopener">codebook_std_jan22.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2021</td>
+                                        <td><code>jan21</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_jan21.pdf" target="_blank" rel="noopener">codebook_std_jan21.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2020</td>
+                                        <td><code>jan20</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_jan20.pdf" target="_blank" rel="noopener">codebook_std_jan20.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2019</td>
+                                        <td><code>jan19</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_jan19.pdf" target="_blank" rel="noopener">codebook_std_jan19.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2018</td>
+                                        <td><code>jan18</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_jan18.pdf" target="_blank" rel="noopener">codebook_std_jan18.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2017</td>
+                                        <td><code>jan17</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_jan17.pdf" target="_blank" rel="noopener">codebook_std_jan17.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2016</td>
+                                        <td><code>jan16</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_jan16.pdf" target="_blank" rel="noopener">codebook_std_jan16.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2015</td>
+                                        <td><code>jan15</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_jan15.pdf" target="_blank" rel="noopener">codebook_std_jan15.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2014</td>
+                                        <td><code>jan14</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_jan14.pdf" target="_blank" rel="noopener">codebook_std_jan14.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aug 2013</td>
+                                        <td><code>30aug13</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_30aug13.pdf" target="_blank" rel="noopener">codebook_std_30aug13.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>May 2012</td>
+                                        <td><code>21may12</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_21may12.pdf" target="_blank" rel="noopener">codebook_std_21may12.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apr 2011</td>
+                                        <td><code>6apr11</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_6apr11.pdf" target="_blank" rel="noopener">codebook_std_6apr11.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>May 2010</td>
+                                        <td><code>27may10</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_27may10.pdf" target="_blank" rel="noopener">codebook_std_27may10.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sep 2009</td>
+                                        <td><code>17sep09</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_17sep09.pdf" target="_blank" rel="noopener">codebook_std_17sep09.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>May 2008</td>
+                                        <td><code>15may08</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_std_15may08.pdf" target="_blank" rel="noopener">codebook_std_15may08.pdf</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- OECD Codebooks -->
+                        <h4 class="mt-5 mb-3">OECD (<code>oecd</code>)</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Versao</th>
+                                        <th>Identificador</th>
+                                        <th>Codebook PDF</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="badge-dataset">Atual</span> Jan 2026</td>
+                                        <td><code>jan26</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/data/codebook_oecd_jan26.pdf" target="_blank" rel="noopener">codebook_oecd_jan26.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2025</td>
+                                        <td><code>jan25</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_jan25.pdf" target="_blank" rel="noopener">codebook_oecd_jan25.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2024</td>
+                                        <td><code>jan24</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_jan24.pdf" target="_blank" rel="noopener">codebook_oecd_jan24.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2023</td>
+                                        <td><code>jan23</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_jan23.pdf" target="_blank" rel="noopener">codebook_oecd_jan23.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2022</td>
+                                        <td><code>jan22</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_jan22.pdf" target="_blank" rel="noopener">codebook_oecd_jan22.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2021</td>
+                                        <td><code>jan21</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_jan21.pdf" target="_blank" rel="noopener">codebook_oecd_jan21.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2020</td>
+                                        <td><code>jan20</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_jan20.pdf" target="_blank" rel="noopener">codebook_oecd_jan20.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2019</td>
+                                        <td><code>jan19</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_jan19.pdf" target="_blank" rel="noopener">codebook_oecd_jan19.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2018</td>
+                                        <td><code>jan18</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_jan18.pdf" target="_blank" rel="noopener">codebook_oecd_jan18.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2017</td>
+                                        <td><code>jan17</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_jan17.pdf" target="_blank" rel="noopener">codebook_oecd_jan17.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2016</td>
+                                        <td><code>jan16</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_jan16.pdf" target="_blank" rel="noopener">codebook_oecd_jan16.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2015</td>
+                                        <td><code>jan15</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_jan15.pdf" target="_blank" rel="noopener">codebook_oecd_jan15.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2014</td>
+                                        <td><code>jan14</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_jan14.pdf" target="_blank" rel="noopener">codebook_oecd_jan14.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aug 2013</td>
+                                        <td><code>30aug13</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_30aug13.pdf" target="_blank" rel="noopener">codebook_oecd_30aug13.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>May 2012</td>
+                                        <td><code>21may12</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_21may12.pdf" target="_blank" rel="noopener">codebook_oecd_21may12.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apr 2011</td>
+                                        <td><code>6apr11</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_6apr11.pdf" target="_blank" rel="noopener">codebook_oecd_6apr11.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>May 2010</td>
+                                        <td><code>27may10</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_27may10.pdf" target="_blank" rel="noopener">codebook_oecd_27may10.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sep 2009</td>
+                                        <td><code>17sep09</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_17sep09.pdf" target="_blank" rel="noopener">codebook_oecd_17sep09.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>May 2008</td>
+                                        <td><code>15may08</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_oecd_15may08.pdf" target="_blank" rel="noopener">codebook_oecd_15may08.pdf</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Environmental Codebooks -->
+                        <h4 class="mt-5 mb-3">Environmental Indicators (<code>ei</code>)</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Versao</th>
+                                        <th>Identificador</th>
+                                        <th>Codebook PDF</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="badge-dataset">Atual</span> Jan 2026</td>
+                                        <td><code>jan26</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/data/codebook_ei_jan26.pdf" target="_blank" rel="noopener">codebook_ei_jan26.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2025</td>
+                                        <td><code>jan25</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_jan25.pdf" target="_blank" rel="noopener">codebook_ei_jan25.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2024</td>
+                                        <td><code>jan24</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_jan24.pdf" target="_blank" rel="noopener">codebook_ei_jan24.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2023</td>
+                                        <td><code>jan23</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_jan23.pdf" target="_blank" rel="noopener">codebook_ei_jan23.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2022</td>
+                                        <td><code>jan22</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_jan22.pdf" target="_blank" rel="noopener">codebook_ei_jan22.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2021</td>
+                                        <td><code>jan21</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_jan21.pdf" target="_blank" rel="noopener">codebook_ei_jan21.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2020</td>
+                                        <td><code>jan20</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_jan20.pdf" target="_blank" rel="noopener">codebook_ei_jan20.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2019</td>
+                                        <td><code>jan19</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_jan19.pdf" target="_blank" rel="noopener">codebook_ei_jan19.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2018</td>
+                                        <td><code>jan18</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_jan18.pdf" target="_blank" rel="noopener">codebook_ei_jan18.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2017</td>
+                                        <td><code>jan17</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_jan17.pdf" target="_blank" rel="noopener">codebook_ei_jan17.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2016</td>
+                                        <td><code>jan16</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_jan16.pdf" target="_blank" rel="noopener">codebook_ei_jan16.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2015</td>
+                                        <td><code>jan15</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_jan15.pdf" target="_blank" rel="noopener">codebook_ei_jan15.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2014</td>
+                                        <td><code>jan14</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_jan14.pdf" target="_blank" rel="noopener">codebook_ei_jan14.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aug 2013</td>
+                                        <td><code>30aug13</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_30aug13.pdf" target="_blank" rel="noopener">codebook_ei_30aug13.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>May 2012</td>
+                                        <td><code>21may12</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_21may12.pdf" target="_blank" rel="noopener">codebook_ei_21may12.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apr 2011</td>
+                                        <td><code>6apr11</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_6apr11.pdf" target="_blank" rel="noopener">codebook_ei_6apr11.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>May 2010</td>
+                                        <td><code>27may10</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_27may10.pdf" target="_blank" rel="noopener">codebook_ei_27may10.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sep 2009</td>
+                                        <td><code>17sep09</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_17sep09.pdf" target="_blank" rel="noopener">codebook_ei_17sep09.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>May 2008</td>
+                                        <td><code>15may08</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_ei_15may08.pdf" target="_blank" rel="noopener">codebook_ei_15may08.pdf</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Social Policy Codebooks -->
+                        <h4 class="mt-5 mb-3">Social Policy (<code>soc</code>)</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Versao</th>
+                                        <th>Identificador</th>
+                                        <th>Codebook PDF</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="badge-dataset">Atual</span> Jan 2026</td>
+                                        <td><code>jan26</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/data/codebook_soc_jan26.pdf" target="_blank" rel="noopener">codebook_soc_jan26.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2025</td>
+                                        <td><code>jan25</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_jan25.pdf" target="_blank" rel="noopener">codebook_soc_jan25.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2024</td>
+                                        <td><code>jan24</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_jan24.pdf" target="_blank" rel="noopener">codebook_soc_jan24.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2023</td>
+                                        <td><code>jan23</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_jan23.pdf" target="_blank" rel="noopener">codebook_soc_jan23.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2022</td>
+                                        <td><code>jan22</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_jan22.pdf" target="_blank" rel="noopener">codebook_soc_jan22.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2021</td>
+                                        <td><code>jan21</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_jan21.pdf" target="_blank" rel="noopener">codebook_soc_jan21.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2020</td>
+                                        <td><code>jan20</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_jan20.pdf" target="_blank" rel="noopener">codebook_soc_jan20.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2019</td>
+                                        <td><code>jan19</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_jan19.pdf" target="_blank" rel="noopener">codebook_soc_jan19.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2018</td>
+                                        <td><code>jan18</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_jan18.pdf" target="_blank" rel="noopener">codebook_soc_jan18.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2017</td>
+                                        <td><code>jan17</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_jan17.pdf" target="_blank" rel="noopener">codebook_soc_jan17.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2016</td>
+                                        <td><code>jan16</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_jan16.pdf" target="_blank" rel="noopener">codebook_soc_jan16.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2015</td>
+                                        <td><code>jan15</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_jan15.pdf" target="_blank" rel="noopener">codebook_soc_jan15.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 2014</td>
+                                        <td><code>jan14</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_jan14.pdf" target="_blank" rel="noopener">codebook_soc_jan14.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aug 2013</td>
+                                        <td><code>30aug13</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_30aug13.pdf" target="_blank" rel="noopener">codebook_soc_30aug13.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>May 2012</td>
+                                        <td><code>21may12</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_21may12.pdf" target="_blank" rel="noopener">codebook_soc_21may12.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apr 2011</td>
+                                        <td><code>6apr11</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_6apr11.pdf" target="_blank" rel="noopener">codebook_soc_6apr11.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>May 2010</td>
+                                        <td><code>27may10</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_27may10.pdf" target="_blank" rel="noopener">codebook_soc_27may10.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sep 2009</td>
+                                        <td><code>17sep09</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_17sep09.pdf" target="_blank" rel="noopener">codebook_soc_17sep09.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>May 2008</td>
+                                        <td><code>15may08</code></td>
+                                        <td><a href="https://www.qogdata.pol.gu.se/dataarchive/codebook_soc_15may08.pdf" target="_blank" rel="noopener">codebook_soc_15may08.pdf</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Acessar via pyqog -->
+                    <div class="mb-5">
+                        <h4>Acessar codebooks via pyqog</h4>
+<pre><code><span class="kw">import</span> pyqog
+
+<span class="cm"># Obter URL do codebook para qualquer dataset e versao</span>
+url = pyqog.get_codebook_url(<span class="st">"standard"</span>, <span class="nb">2026</span>)
+<span class="nb">print</span>(url)  <span class="cm"># https://www.qogdata.pol.gu.se/data/codebook_std_jan26.pdf</span>
+
+url = pyqog.get_codebook_url(<span class="st">"basic"</span>, <span class="nb">2020</span>)
+<span class="nb">print</span>(url)  <span class="cm"># https://www.qogdata.pol.gu.se/dataarchive/codebook_bas_jan20.pdf</span></code></pre>
+                    </div>
+
+                    <!-- Links Externos -->
+                    <div id="links-externos" class="mb-5">
+                        <h2 class="section-title">Links Externos</h2>
+                        <p>Recursos oficiais do Quality of Government Institute:</p>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="feature-card">
+                                    <h5>&#128269; QoG Data Finder</h5>
+                                    <p class="text-muted">Ferramenta interativa para buscar e explorar variaveis nos datasets do QoG.</p>
+                                    <a href="https://datafinder.qog.gu.se/" target="_blank" rel="noopener" class="btn btn-sm" style="background-color: var(--accent); color: white;">Acessar Data Finder</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="feature-card">
+                                    <h5>&#128229; Data Downloads</h5>
+                                    <p class="text-muted">Pagina oficial de downloads dos datasets do QoG Institute.</p>
+                                    <a href="https://www.gu.se/en/quality-government/qog-data/data-downloads" target="_blank" rel="noopener" class="btn btn-sm" style="background-color: var(--accent); color: white;">Ir para Downloads</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="feature-card">
+                                    <h5>&#128451; Data Archive</h5>
+                                    <p class="text-muted">Arquivo com todas as versoes anteriores dos datasets QoG.</p>
+                                    <a href="https://www.gu.se/en/quality-government/qog-data/data-downloads/data-archive" target="_blank" rel="noopener" class="btn btn-sm" style="background-color: var(--accent); color: white;">Acessar Arquivo</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="feature-card">
+                                    <h5>&#127963; QoG Institute</h5>
+                                    <p class="text-muted">Site oficial do Quality of Government Institute, Universidade de Gotemburgo.</p>
+                                    <a href="https://www.gu.se/en/quality-government" target="_blank" rel="noopener" class="btn btn-sm" style="background-color: var(--accent); color: white;">Visitar Site</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="notice-compact">
+                &#128218; <strong>pyqog</strong> &mdash; Ferramenta didatica do Professor Danny de Castro, IDP (Brasil).
+                Para dados oficiais: <a href="https://www.gu.se/en/quality-government">QoG Institute</a> |
+                Contato: <a href="mailto:danny.soares@idp.edu.br">danny.soares@idp.edu.br</a>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h6>pyqog</h6>
+                    <p class="mb-1"><a href="instalacao.html">Instalacao</a></p>
+                    <p class="mb-1"><a href="tutorial.html">Tutorial</a></p>
+                    <p class="mb-1"><a href="api.html">Referencia da API</a></p>
+                    <p class="mb-1"><a href="datasets.html">Datasets</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h6>QoG Institute</h6>
+                    <p class="mb-1"><a href="https://www.gu.se/en/quality-government" target="_blank" rel="noopener">Site Oficial</a></p>
+                    <p class="mb-1"><a href="https://www.gu.se/en/quality-government/qog-data/data-downloads" target="_blank" rel="noopener">Downloads</a></p>
+                    <p class="mb-1"><a href="https://datafinder.qog.gu.se/" target="_blank" rel="noopener">Data Finder</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Projeto</h6>
+                    <p class="mb-1"><a href="https://github.com/prof-danny-idp/pyqog" target="_blank" rel="noopener">GitHub</a></p>
+                    <p class="mb-1"><a href="mailto:danny.soares@idp.edu.br">Contato</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                &copy; 2026 pyqog. Licenca MIT. Dados fornecidos pelo <a href="https://www.gu.se/en/quality-government">QoG Institute</a>, Universidade de Gotemburgo.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/lang-switcher.js"></script>
+</body>
+</html>

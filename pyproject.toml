@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyqog"
+version = "0.1.0"
+description = "Python client for Quality of Government (QoG) Institute data"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Danny de Castro", email = "danny.soares@idp.edu.br"}
+]
+keywords = ["qog", "quality-of-government", "political-science", "open-data", "governance"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "pandas>=1.5.0",
+    "requests>=2.28.0",
+]
+
+[project.urls]
+Homepage = "https://prof-danny-idp.github.io/pyqog/"
+Repository = "https://github.com/prof-danny-idp/pyqog"
+Documentation = "https://prof-danny-idp.github.io/pyqog/"
+"Bug Tracker" = "https://github.com/prof-danny-idp/pyqog/issues"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+include = ["pyqog*"]
